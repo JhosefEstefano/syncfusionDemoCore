@@ -1,0 +1,46 @@
+﻿@page
+@using syncfusionDemoCore.Pages
+@model syncfusionDemoCore.Pages.PivotTableModel
+
+<div class="h-100" style="height:100vh">
+    <ejs-button id="excel" class="my-2" content="Exportar a Excel" isPrimary="true"></ejs-button>
+    <ejs-button id="pdf" content="Exportar a pdf" isPrimary="true"></ejs-button>
+    <ejs-button id="conditional-formatting-btn" content="Formato Condicional" isPrimary="true"></ejs-button>
+    <ejs-pivotview id="PivotView" height="800" showGroupingBar="true" allowConditionalFormatting="true" showFieldList="true" allowExcelExport="true" allowPdfExport="true">
+        <e-datasourcesettings dataSource="@Model.ListaDatos" expandAll="false" enableSorting="true" allowLabelFilter="true" allowValueFilter="true">
+            <e-rows>
+                <e-field name="Cliente"></e-field>
+            </e-rows>
+            <e-columns>
+                <e-field name="Bodega" caption="Bodega"></e-field>
+                <e-field name="Producto"></e-field>
+            </e-columns>
+            <e-values>
+                <e-field name="CantidadVenta" caption="Cantidad Venta"></e-field>
+                <e-field name="Total"></e-field>
+            </e-values>
+        </e-datasourcesettings>
+        <e-gridSettings columnWidth="100"></e-gridSettings>
+    </ejs-pivotview>
+</div>
+
+
+
+<script>
+    var pivotObj;
+
+    document.getElementById("conditional-formatting-btn").addEventListener('click', function () {
+        var pivotObj = document.getElementById('PivotView').ej2_instances[0];
+        pivotObj.conditionalFormattingModule.showConditionalFormattingDialog();
+    });
+
+    document.getElementById('excel').onclick = function () {
+        pivotObj = document.getElementById('PivotView').ej2_instances[0];
+        pivotObj.excelExport();
+    }
+
+    document.getElementById('pdf').onclick = function () {
+        pivotObj = document.getElementById('PivotView').ej2_instances[0];
+        pivotObj.pdfExport();
+    }
+</script>

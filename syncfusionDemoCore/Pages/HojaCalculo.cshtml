@@ -1,0 +1,15 @@
+﻿@page
+@using syncfusionDemoCore.Pages
+@model syncfusionDemoCore.Pages.HojaCalculoModel
+
+<div class="h-100">
+    <ejs-spreadsheet height="850" id="spreadsheet">
+        <e-spreadsheet-sheets>
+            <e-spreadsheet-sheet>
+                <e-spreadsheet-ranges>
+                    <e-spreadsheet-range dataSource="@Model.ListaDatos"></e-spreadsheet-range>
+                </e-spreadsheet-ranges>
+            </e-spreadsheet-sheet>
+        </e-spreadsheet-sheets>
+    </ejs-spreadsheet>
+</div>
